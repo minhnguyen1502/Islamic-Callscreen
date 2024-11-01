@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center_vertical"
+    android:layout_height="match_parent">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_20sdp"
@@ -14,6 +16,16 @@
         android:paddingTop="@dimen/_20sdp"
         android:paddingBottom="@dimen/_14sdp">
 
+        <ImageView
+            android:id="@+id/iv_start"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:padding="12dp"
+            android:layout_marginTop="-12dp"
+            android:layout_marginStart="-12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/img_quit"/>
         <TextView
             android:id="@+id/tv_title_quit"
             android:layout_width="wrap_content"
@@ -21,26 +33,35 @@
             android:ellipsize="end"
             android:includeFontPadding="false"
             android:singleLine="true"
-            android:text="@string/quit"
+            android:fontFamily="@font/svn_semi_bold"
+            android:text="Quit App?"
+            app:layout_constraintStart_toEndOf="@id/iv_start"
+            app:layout_constraintTop_toTopOf="@id/iv_start"
+            app:layout_constraintBottom_toBottomOf="@id/iv_start"
             android:textColor="@color/black"
             android:textSize="@dimen/_16ssp" />
 
         <TextView
             android:id="@+id/tv_content_quit"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginTop="16dp"
             android:gravity="center"
             android:includeFontPadding="false"
             android:text="@string/are_you_sure_want_to_quit_app"
+            android:fontFamily="@font/svn__regular"
             android:textColor="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/tv_title_quit"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             android:textSize="@dimen/_11ssp" />
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/tv_content_quit"
             android:layout_marginHorizontal="@dimen/_12sdp"
-            android:layout_marginTop="@dimen/_28sdp">
+            android:layout_marginTop="24dp">
 
             <View
                 android:id="@+id/view_center"
@@ -54,8 +75,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
-                android:layout_toStartOf="@+id/view_center"
-                android:background="@drawable/bg_view_32">
+                android:layout_toStartOf="@+id/view_center">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -65,9 +85,11 @@
                     android:ellipsize="end"
                     android:includeFontPadding="false"
                     android:singleLine="true"
+                    android:fontFamily="@font/svn__regular"
+                    android:textStyle="bold"
                     android:text="@string/cancel"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/_10ssp" />
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -75,9 +97,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_toEndOf="@+id/view_center"
-                android:backgroundTint="#d82d25"
-                android:background="@drawable/bg_view_32">
+                android:layout_toEndOf="@+id/view_center">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -86,13 +106,17 @@
                     android:layout_marginVertical="@dimen/_8sdp"
                     android:ellipsize="end"
                     android:includeFontPadding="false"
+                    android:textStyle="bold"
+
                     android:singleLine="true"
                     android:text="@string/quit"
-                    android:textColor="#FCFCFC"
-                    android:textSize="@dimen/_10ssp" />
+                    android:fontFamily="@font/svn__regular"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
             </RelativeLayout>
         </RelativeLayout>
 
-    </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </RelativeLayout>

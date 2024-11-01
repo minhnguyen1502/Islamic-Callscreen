@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.view.View;
 
 import com.example.islamiccallscreen.R;
+import com.example.islamiccallscreen.ads.IsNetWork;
 import com.example.islamiccallscreen.base.BaseActivity;
 import com.example.islamiccallscreen.databinding.ActivityPolicyBinding;
 
@@ -19,21 +20,34 @@ public class PolicyActivity extends BaseActivity<ActivityPolicyBinding> {
     @SuppressLint("SetJavaScriptEnabled")
     @Override
     public void initView() {
-        binding.viewTop.tvToolBar.setText(getString(R.string.privacy_policy));
-
-        binding.viewTop.ivCheck.setVisibility(View.INVISIBLE);
 
         binding.webView.getSettings().setJavaScriptEnabled(true);
         binding.webView.loadUrl(linkPolicy);
+        if (IsNetWork.haveNetworkConnection(this)) {
+            binding.webView.setVisibility(View.VISIBLE);
+            binding.ivNoInternet.setVisibility(View.GONE);
+            binding.tvNoInternet.setVisibility(View.GONE);
+
+            binding.webView.getSettings().setJavaScriptEnabled(true);
+            binding.webView.loadUrl(linkPolicy);
+        } else {
+            binding.webView.setVisibility(View.GONE);
+            binding.ivNoInternet.setVisibility(View.VISIBLE);
+            binding.tvNoInternet.setVisibility(View.VISIBLE);
+
+            binding.webView.getSettings().setJavaScriptEnabled(true);
+            binding.webView.loadUrl(linkPolicy);
+            binding.ivBack.setOnClickListener(v -> onBack());
+        }
+        binding.ivBack.setOnClickListener(v -> onBack());
     }
 
     @Override
     public void bindView() {
-        binding.viewTop.ivBack.setOnClickListener(v -> onBack());
     }
 
     @Override
     public void onBack() {
-        finishThisActivity();
+        finish();
     }
 }
